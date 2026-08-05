@@ -10,55 +10,59 @@ import {
   FaFileAlt,
 } from "react-icons/fa";
 
+import { useNavigate } from "react-router-dom";
+
 const practiceAreas = [
   {
-    title: "Criminal Law",
+    title: "Criminal",
     icon: <FaGavel />,
     description: "Criminal cases and legal defense.",
   },
   {
-    title: "Civil Law",
+    title: "Civil",
     icon: <FaBalanceScale />,
     description: "Civil disputes and legal matters.",
   },
   {
-    title: "Family Law",
+    title: "Family",
     icon: <FaUsers />,
     description: "Marriage, divorce and family issues.",
   },
   {
-    title: "Property Law",
+    title: "Property",
     icon: <FaHome />,
     description: "Property registration and disputes.",
   },
   {
-    title: "Cyber Law",
+    title: "Cyber",
     icon: <FaLaptopCode />,
     description: "Cyber crime and digital security.",
   },
   {
-    title: "Corporate Law",
+    title: "Corporate",
     icon: <FaBuilding />,
     description: "Business and company legal services.",
   },
   {
-    title: "Labour Law",
+    title: "Labour",
     icon: <FaBriefcase />,
     description: "Employee and employer rights.",
   },
   {
-    title: "Consumer Law",
+    title: "Consumer",
     icon: <FaShoppingCart />,
     description: "Consumer complaints and protection.",
   },
   {
-    title: "Tax Law",
+    title: "Tax",
     icon: <FaFileAlt />,
     description: "Income tax and GST legal advice.",
   },
 ];
 
 function PracticeAreas() {
+  const navigate = useNavigate();
+
   return (
     <section className="py-20 bg-gray-100">
       <div className="max-w-7xl mx-auto px-6">
@@ -67,20 +71,21 @@ function PracticeAreas() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {practiceAreas.map((area, index) => (
+          {practiceAreas.map((area) => (
             <div
-              key={index}
-              className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300 cursor-pointer"
+              key={area.title}
+              onClick={() => navigate(`/lawyers/${area.title.toLowerCase()}`)}
+              className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition duration-300 cursor-pointer"
             >
-              <div className="text-5xl mb-5">
+              <div className="text-5xl mb-5 flex justify-center">
                 {area.icon}
               </div>
 
-              <h3 className="text-2xl font-semibold mb-3">
-                {area.title}
+              <h3 className="text-2xl font-semibold text-center mb-3">
+                {area.title} Law
               </h3>
 
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-center">
                 {area.description}
               </p>
             </div>
