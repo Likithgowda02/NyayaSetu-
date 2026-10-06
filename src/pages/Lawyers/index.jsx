@@ -5,20 +5,25 @@ function Lawyers() {
   const { specialization } = useParams();
   const navigate = useNavigate();
 
-  const filteredLawyers = lawyers.filter(
-    (lawyer) =>
-      lawyer.specialization.toLowerCase() === specialization.toLowerCase()
-  );
+ const filteredLawyers =
+  specialization.toLowerCase() === "all"
+    ? lawyers
+    : lawyers.filter(
+        (lawyer) =>
+          lawyer.specialization.toLowerCase() ===
+          specialization.toLowerCase()
+      );
 
   return (
     <div className="min-h-screen bg-gray-100 py-10">
       <div className="max-w-7xl mx-auto px-6">
 
-        <h1 className="text-4xl font-bold text-center mb-10">
-          {specialization.charAt(0).toUpperCase() +
-            specialization.slice(1)} Lawyers
-        </h1>
-
+       <h1 className="text-4xl font-bold text-center mb-10">
+  {specialization.toLowerCase() === "all"
+    ? "Find a Lawyer"
+    : `${specialization.charAt(0).toUpperCase() +
+        specialization.slice(1)} Lawyers`}
+</h1>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
           {filteredLawyers.length === 0 ? (

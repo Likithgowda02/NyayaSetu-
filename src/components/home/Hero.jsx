@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function Hero() {
+  const navigate = useNavigate();
+
   return (
     <section className="bg-white text-black min-h-[90vh] flex items-center justify-center">
       <div className="text-center max-w-3xl px-6">
@@ -19,11 +23,19 @@ function Hero() {
 
         <div className="flex justify-center gap-4">
 
-          <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
+          {/* Find a Lawyer */}
+          <button
+            onClick={() => navigate("/lawyers/all")}
+            className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition"
+          >
             Find a Lawyer
           </button>
 
-          <button className="border border-black px-6 py-3 rounded-lg hover:bg-black hover:text-white transition">
+          {/* Join as Lawyer */}
+          <button
+            onClick={() => navigate("/register")}
+            className="border border-black px-6 py-3 rounded-lg hover:bg-black hover:text-white transition"
+          >
             Join as Lawyer
           </button>
 

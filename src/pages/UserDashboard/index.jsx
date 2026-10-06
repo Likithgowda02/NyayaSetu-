@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function UserDashboard() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Remove login information
+    localStorage.removeItem("user");
+
+    // Go back to login page
+    navigate("/login");
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
 
@@ -8,7 +18,8 @@ function UserDashboard() {
       <nav className="bg-black text-white px-10 py-4 flex justify-between items-center">
         <h1 className="text-3xl font-bold">⚖ Nyaya Setu</h1>
 
-        <div className="flex gap-5">
+        <div className="flex gap-5 items-center">
+
           <Link to="/" className="hover:text-gray-300">
             Home
           </Link>
@@ -17,9 +28,13 @@ function UserDashboard() {
             Find Lawyers
           </Link>
 
-          <button className="bg-white text-black px-4 py-2 rounded-lg">
+          <button
+            onClick={handleLogout}
+            className="bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-200"
+          >
             Logout
           </button>
+
         </div>
       </nav>
 
@@ -35,11 +50,9 @@ function UserDashboard() {
         </p>
 
         {/* Cards */}
-
         <div className="grid md:grid-cols-3 gap-8 mt-10">
 
           <div className="bg-white rounded-xl shadow-lg p-8">
-
             <h2 className="text-2xl font-bold">
               My Appointments
             </h2>
@@ -51,7 +64,6 @@ function UserDashboard() {
             <button className="mt-6 w-full bg-black text-white py-3 rounded-lg">
               View
             </button>
-
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-8">
@@ -65,11 +77,9 @@ function UserDashboard() {
             </p>
 
             <Link to="/lawyers/criminal">
-
               <button className="mt-6 w-full bg-black text-white py-3 rounded-lg">
                 Search
               </button>
-
             </Link>
 
           </div>
@@ -93,7 +103,6 @@ function UserDashboard() {
         </div>
 
         {/* Recent Appointments */}
-
         <div className="bg-white rounded-xl shadow-lg mt-12 p-8">
 
           <h2 className="text-3xl font-bold mb-6">
@@ -103,7 +112,6 @@ function UserDashboard() {
           <table className="w-full">
 
             <thead>
-
               <tr className="border-b">
 
                 <th className="text-left py-3">Lawyer</th>
@@ -112,7 +120,6 @@ function UserDashboard() {
                 <th className="text-left py-3">Status</th>
 
               </tr>
-
             </thead>
 
             <tbody>
